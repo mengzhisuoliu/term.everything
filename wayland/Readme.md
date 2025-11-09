@@ -1,4 +1,1 @@
-In this package, we provide utilities for working with Wayland protocol over Unix domain sockets. This will hopefully be a resulable package for custom go Wayland compositiors.
-
-## How to use
-TODO
+In this package, we provide utilities for working with Wayland protocol over Unix domain sockets. This will hopefully be a reusable package for custom go Wayland compositors (that I will use at least).

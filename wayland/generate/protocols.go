@@ -11,7 +11,7 @@ import (
 	"sync"
 )
 
-//go:embed protocols
+//go:embed resources
 var protocolsFS embed.FS
 
 func main() {
@@ -36,10 +36,21 @@ If you provide interfaces, we'll only generate those those helpers. separated by
 	if len(os.Args) > 2 {
 		helpersOutDir = os.Args[2]
 	}
-	var protocolsPackage string
+
+	var currentDirInPackage string
 	if len(os.Args) > 3 {
-		protocolsPackage = os.Args[3]
+		currentDirInPackage = os.Args[3]
+	} else {
+		currentDirInPackage = "wayland/protocols"
 	}
+
+	fmt.Println(currentDirInPackage)
+
+	protocolsPackage := filepath.Join(currentDirInPackage, outDir)
+	protocolsPackage = filepath.Clean(protocolsPackage)
+
+	fmt.Println(protocolsPackage)
+
 	var interfacesToGenHelpersFor []string
 	if len(os.Args) > 4 {
 		for i := 4; i < len(os.Args); i++ {
@@ -47,9 +58,9 @@ If you provide interfaces, we'll only generate those those helpers. separated by
 		}
 	}
 
-	entries, err := protocolsFS.ReadDir("protocols")
+	entries, err := protocolsFS.ReadDir("resources")
 	if err != nil {
-		log.Fatalf("read embedded dir protocols: %v", err)
+		log.Fatalf("read embedded dir resources: %v", err)
 	}
 
 	var files []string

@@ -16,7 +16,7 @@ type BuildProtocolOut struct {
 }
 
 func buildProtocol(fs embed.FS, file string, protocolsPackageNameForHelper string, interfacesToGenHelpersFor []string) (BuildProtocolOut, error) {
-	data, err := fs.ReadFile(filepath.Join("protocols", file))
+	data, err := fs.ReadFile(filepath.Join("resources", file))
 	if err != nil {
 		return BuildProtocolOut{}, err
 	}

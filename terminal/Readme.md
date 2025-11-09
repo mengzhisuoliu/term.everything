@@ -1,0 +1,1 @@
+In this package we do everything you need to interact with a Wayland compositor from a terminal application. This includes handling input events, rendering to surfaces, and managing windows.

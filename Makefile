@@ -2,15 +2,14 @@
 
 .DELETE_ON_ERROR:
 
-server_files := $(shell find ./server)
 
-protocols_files := $(shell find ./cmd/protocols)
+protocols_files := $(shell find ./wayland/generate)
 
-xml_protocols := $(shell find ./cmd/protocols -name "*.xml")
+xml_protocols := $(shell find ./wayland/generate -name "*.xml")
 
-generated_protocols := $(patsubst ./cmd/protocols/protocols/%,./wayland/protocols/%.go,$(xml_protocols))
+generated_protocols := $(patsubst ./wayland/generate/resources/%,./wayland/protocols/%.go,$(xml_protocols))
 
-generated_helpers := $(patsubst ./cmd/protocols/protocols/%,./wayland/%.helper.go,$(xml_protocols))
+generated_helpers := $(patsubst ./wayland/generate/resources/%,./wayland/%.helper.go,$(xml_protocols))
 
 # TODO add term.everything to build
 build: $(generated_protocols) $(generated_helpers)
