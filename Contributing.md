@@ -13,6 +13,11 @@ and run the distribute script
 That will use a podman container to build the entire app and it will put the output
 in `./dist`.
 
+Change the `PLATFORM` environment variable to build for different platforms.
+For example to build for linux aarch64:
+```sh
+PLATFORM=linux/aarch64 ./distribute.sh
+```
 
 # Development
 
@@ -60,5 +65,5 @@ make clean
 ```
 
 
-## distribute
-Creates an statically linked binary in a alpine linux podman container.
+## Distribute
+The distribute script creates an statically linked binary in a alpine linux podman container.

@@ -27,6 +27,6 @@ $(bin_name): go.mod main.go $(shell find ./wayland) $(shell find ./termeverythin
 clean:
 	@echo cleaning
 	rm __debug_bin* 2>/dev/null || true
-	if [ -z "$$ALL_PLATFORMS" ]; then rm -rf ./dist 2>/dev/null || true; fi
+	if [ -z "$$MULTI_PLATFORM" ]; then rm -rf ./dist 2>/dev/null || true; fi
 	rm ./wayland/protocols/*.xml.go 2>/dev/null || true
 	rm ./wayland/*.helper.go 2>/dev/null || true

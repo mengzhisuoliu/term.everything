@@ -5,9 +5,6 @@
 
 PODMAN="podman "
 APP_NAME="term.everything❗mmulet.com-dont_forget_to_chmod_+x_this_file"
-if [ -z "${PLATFORM+x}" ]; then
-    PLATFORM="linux/amd64"
-fi
 
 
 get_distro() {
@@ -57,10 +54,14 @@ if ! command -v podman >/dev/null 2>&1; then
   
 fi
 
+if [ -z "${PLATFORM+x}" ]; then
+    PLATFORM_ARG=""
+else
+    PLATFORM_ARG="--platform $PLATFORM -e PLATFORM=$PLATFORM -e MULTI_PLATFORM=1"
+fi
 
 $PODMAN run \
-    --platform $PLATFORM \
-    -e PLATFORM=$PLATFORM \
+    $PLATFORM_ARG \
     -it \
     --volume .:/home/mount \
     --rm alpine:latest /bin/sh /home/mount/resources/alpineCompile.sh && \
