@@ -1,15 +1,41 @@
-This app (term.everything❗mmulet) is
+This app (term.everything❗mmulet.com) is
 copyright 2025 Late for Dinner Studios, LLC
 
 Licensed under the GNU Affero General Public License v3.0
-summary:
 licenses: AGPL-3.0-only
 repository: https://github.com/mmulet/term.everything
+licenseFile: https://github.com/mmulet/term.everything/blob/main/LICENSE.txt
 publisher: Late for Dinner Studios, LLC
+lead developer: Michael Mulet
+maintainer: Michael Mulet
 email: m@mmulet.com
 
 Third-party Dependencies:
-├─ libchafa
-│  ├─ licenses: LGPL-3.0
-│  ├─ repository: https://github.com/hpjansson/chafa
-│  └─ licenseFile: https://github.com/hpjansson/chafa?tab=LGPL-3.0-1-ov-file
+├─ Go Standard Library
+│  ├─ licenses: BSD-3-Clause
+│  ├─ repository: https://github.com/golang/go
+│  └─ licenseFile: https://github.com/golang/go/blob/master/LICENSE
+├─ musl libc (including libm. and pthread)
+│  ├─ licenses: MIT
+│  ├─ repository: https://git.musl-libc.org/cgit/musl/
+│  └─ licenseFile: https://git.musl-libc.org/cgit/musl/tree/COPYRIGHT
+└─ libchafa
+   ├─ licenses: LGPL-3.0
+   ├─ repository: https://github.com/hpjansson/chafa
+   └─ licenseFile: https://github.com/hpjansson/chafa?tab=LGPL-3.0-1-ov-file
+   ├─  GLib – 2.0
+   |  ├─ licenses: LGPL-2.1-or-later
+   |  ├─ repository: https://gitlab.gnome.org/GNOME/glib/
+   |  └─ licenseFile: https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt
+   ├─ pcre2-8
+   |  ├─ licenses: BSD
+   |  ├─ repository: https://github.com/PCRE2Project/pcre2
+   |  └─ licenseFile: https://github.com/PCRE2Project/pcre2/blob/main/LICENCE.md
+   ├─ libatomic
+   │  ├─ licenses: GPL-3.0-with-GCC-exception
+   │  ├─ repository: https://gcc.gnu.org/
+   │  └─ licenseFile: https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html (GCC Runtime Library Exception)
+   ├─ libintl (from GNU gettext)
+   │  ├─ licenses: LGPL-2.1-or-later
+   │  ├─ repository: https://www.gnu.org/software/gettext/
+   │  └─ licenseFile: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
