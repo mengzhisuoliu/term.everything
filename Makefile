@@ -22,7 +22,6 @@ $(generated_protocols) $(generated_helpers)&: $(protocols_files) ./wayland/gener
 STATIC_FLAGS := $(if $(STATIC_BUILD),-ldflags '-extldflags "-static"',)
 
 $(bin_name): go.mod main.go $(shell find ./wayland) $(shell find ./termeverything) Makefile $(shell find ./framebuffertoansi) $(shell find ./escapecodes) $(generated_protocols) $(generated_helpers)
-	go mod tidy
 	go build $(STATIC_FLAGS) -o $(bin_name) .
 
 clean:

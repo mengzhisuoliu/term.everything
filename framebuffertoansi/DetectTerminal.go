@@ -99,7 +99,7 @@ func getCanvasMode(termInfo *C.ChafaTermInfo, pixelMode C.ChafaPixelMode) C.Chaf
 	}
 }
 
-func detectTerminal() (termInfo *C.ChafaTermInfo, mode C.ChafaCanvasMode, pixelMode C.ChafaPixelMode) {
+func DetectTerminal() (termInfo *C.ChafaTermInfo, mode C.ChafaCanvasMode, pixelMode C.ChafaPixelMode) {
 	termInfo = C.detect_term_info_from_env()
 	pixelMode = getPixelMode(termInfo)
 	mode = getCanvasMode(termInfo, pixelMode)

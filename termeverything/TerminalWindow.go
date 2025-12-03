@@ -5,13 +5,13 @@ import (
 	"os"
 	"os/signal"
 	"slices"
+	"syscall"
 	"time"
 
 	"github.com/mmulet/term.everything/escapecodes"
 	"github.com/mmulet/term.everything/framebuffertoansi"
 	"github.com/mmulet/term.everything/wayland"
 	"github.com/mmulet/term.everything/wayland/protocols"
-	"golang.org/x/sys/unix"
 )
 
 type RenderedScreenSize struct {
@@ -89,11 +89,11 @@ func MakeTerminalWindow(
 
 	sigCh := make(chan os.Signal, 1)
 	signal.Notify(sigCh,
-		unix.SIGINT,
-		unix.SIGQUIT,
-		unix.SIGTERM,
-		unix.SIGUSR1,
-		unix.SIGUSR2,
+		syscall.SIGINT,
+		syscall.SIGQUIT,
+		syscall.SIGTERM,
+		syscall.SIGUSR1,
+		syscall.SIGUSR2,
 	)
 	go func() {
 		exit_code := 0

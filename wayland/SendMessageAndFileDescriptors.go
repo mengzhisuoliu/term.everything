@@ -3,8 +3,7 @@ package wayland
 import (
 	"fmt"
 	"net"
-
-	"golang.org/x/sys/unix"
+	"syscall"
 )
 
 func SendMessageAndFileDescriptors(conn *net.UnixConn, buf []byte, fds []int) error {
@@ -13,10 +12,7 @@ func SendMessageAndFileDescriptors(conn *net.UnixConn, buf []byte, fds []int) er
 	}
 
 	total := 0
-	var oobFirst []byte
-	if len(fds) > 0 {
-		oobFirst = unix.UnixRights(fds...)
-	}
+	oobFirst := syscall.UnixRights(fds...)
 
 	for total < len(buf) {
 		chunk := buf[total:]
@@ -26,11 +22,14 @@ func SendMessageAndFileDescriptors(conn *net.UnixConn, buf []byte, fds []int) er
 		}
 
 		n, _, err := conn.WriteMsgUnix(chunk, oob, nil)
-		if err != nil {
-			return err
-		}
-		if n <= 0 {
-			return fmt.Errorf("WriteMsgUnix wrote %d bytes", n)
+		if err != nil || n == -1 {
+			var out_error error
+			if err != nil {
+				out_error = err
+			} else {
+				out_error = fmt.Errorf("N -1 on send message")
+			}
+			return out_error
 		}
 		total += n
 	}

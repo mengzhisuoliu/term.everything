@@ -41,7 +41,7 @@ type TerminalDrawLoop struct {
 	 */
 	MinTerminalTimeSeconds *float64
 
-	DrawState framebuffertoansi.DrawState
+	DrawState *framebuffertoansi.DrawState
 
 	Desktop *Desktop
 

@@ -4,9 +4,8 @@ import (
 	"errors"
 	"io"
 	"net"
+	"syscall"
 	"time"
-
-	"golang.org/x/sys/unix"
 )
 
 const (
@@ -16,7 +15,7 @@ const (
 	GetMessage_intSizeBytes = 4   // sizeof(int) on Linux
 )
 
-var oob = make([]byte, unix.CmsgSpace(GetMessage_intSizeBytes*GetMessage_maxFDsInCmsg))
+var oob = make([]byte, syscall.CmsgSpace(GetMessage_intSizeBytes*GetMessage_maxFDsInCmsg))
 
 func GetMessageAndFileDescriptors(conn *net.UnixConn, buf []byte) (n int, fds []int, err error) {
 
@@ -46,9 +45,9 @@ func GetMessageAndFileDescriptors(conn *net.UnixConn, buf []byte) (n int, fds []
 
 	// Parse as many rights as fit; ignore truncation like the C++.
 	if oobn > 0 {
-		if cmsgs, perr := unix.ParseSocketControlMessage(oob[:oobn]); perr == nil {
+		if cmsgs, perr := syscall.ParseSocketControlMessage(oob[:oobn]); perr == nil {
 			for _, cmsg := range cmsgs {
-				if rights, rerr := unix.ParseUnixRights(&cmsg); rerr == nil && len(rights) > 0 {
+				if rights, rerr := syscall.ParseUnixRights(&cmsg); rerr == nil && len(rights) > 0 {
 					fds = append(fds, rights...)
 					if len(fds) >= GetMessage_hardFDLimit {
 						fds = fds[:GetMessage_hardFDLimit]

@@ -123,6 +123,8 @@
     "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
     "${workspaceFolder}/c_interop/include",
     "${workspaceFolder}/deps/**/*",
+    "${workspaceFolder}/third_party/node-v22.14.0-linux-x64/include/node",
+    "${workspaceFolder}/third_party/node-addon-api-8.3.1"
   ],
   "mesonbuild.selectRootDir": false,
   "cSpell.words": [
